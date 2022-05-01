@@ -124,7 +124,7 @@ while(true)
 try
 { 
     //Creating object for class Address book with parameters for constructor
-    let addressBookObject= new AddressBook("Vishal","Garg","Barwala","Hisar","Haryana","125 121",8570934858,"vishal.garg@capgemini.com");
+    let addressBookObject= new AddressBook("Abhishek","narwariya","cm","indore","mp","125 121",8570934858,"vishal.garg@capgemini.com");
     //creating array and pushing address book object inside array
     addressBookArray.push(addressBookObject);
     addressBookArray.push(new AddressBook("Mahak","Singla","Sector14","Hisar","Haryana",125001,9595959595,"mahak.singla@gmail.com"));
@@ -152,3 +152,19 @@ catch(e)
 {
     console.error(e);
 }
+ //deleting details from the address book array 1st method
+ let filteredArray= addressBookArray.filter(contact=>contact.firstName!="Abhishek" && contact.lastName!="Narwariya");
+ console.log("\nDeleting Elements from array\n");
+ //console.log(deletedArray);
+ filteredArray.forEach(contact=>console.log(contact.toString()));
+ //deleting details from address book array 2nd method
+ for(let contact=0;contact<addressBookArray.length;contact++)
+ {
+     if(addressBookArray[contact].firstName=="Abhishek" && addressBookArray[contact].lastName=="Narwariya")
+     {
+         addressBookArray.splice(contact,1);
+     }
+
+ }
+console.log("Deleting Elements from array -2nd method\n");
+addressBookArray.forEach(contact=>console.log(contact.toString()));
