@@ -111,15 +111,21 @@ while(true)
      let phoneNumber= prompt.question("Please enter your phonenumber: ");
      let email = prompt.question("please enter your email: ");
      let addressBook= new AddressBook(firstName,lastName,address,city,state,zip,phoneNumber,email);
-     addressBookArray.push(addressBook);
-     console.log("\nDetails entered successfully, please enter first name to add more details else press enter");
+       //UC 7 Checking if details already exists in table
+       if(addressBookArray.find(contacts=>contacts.firstName==addressBook.firstName && contacts.lastName==addressBook.lastName && contacts.address==addressBook.address && contacts.city==addressBook.city && contacts.state==addressBook.state && contacts.zip==addressBook.zip && contacts.phoneNumber==addressBook.phoneNumber && contacts.email==addressBook.email))
+       throw "Details you are entering already exists";
+   else
+       addressBookArray.push(addressBook);
+    console.log("\nDetails entered successfully, please enter first name to add more details else press enter");
+   }
+   catch(e)
+    {
+       console.error(e);
+       console.log("Please enter input again");
     }
-    catch(e)
-     {
-        console.error(e);
-        console.log("Please enter input again, values entered is not in correct format");
-     }
-}  
+    
+   
+ 
 
 try
 { 
@@ -169,7 +175,3 @@ catch(e)
 console.log("Deleting Elements from array -2nd method\n");
 addressBookArray.forEach(contact=>console.log(contact.toString()));
 
-//UC6 finding out the size of array using reduce function
-let nameRegex= RegExp('^[A-Z]{1}[A-Za-z]{2,}$')
-let addressBookCount= addressBookArray.reduce((count,contact)=>count= count+1,0);
-console.log("UC6 Printing the count of address book contacts: "+addressBookCount);
